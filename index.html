@@ -1,0 +1,808 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasihsayang.co | Sebuah aksesoris dari hati</title>
+    <!-- Favicon (Icon Website) -->
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/zaptzy/kasihsayangco/refs/heads/main/logo.png">
+    <!-- Google Fonts untuk Kombinasi Judul Mewah (Tai Heritage Pro) & Teks Modern (Outfit) -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Tai+Heritage+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset Dasar & Global Setup */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* Menggunakan font Outfit untuk semua teks dasar */
+            font-family: 'Outfit', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #fddce8;
+            color: #000000;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Menggunakan font Tai Heritage Pro khusus untuk SEMUA judul dan logo */
+        h1, h2, h3, .brand-logo {
+            font-family: 'Tai Heritage Pro', serif;
+        }
+
+        /* Navigasi Sticky Modern */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 8%;
+            background-color: rgba(255, 200, 221, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(3, 4, 94, 0.1);
+        }
+
+        .brand-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .brand-logo img {
+            height: 40px;
+            width: auto;
+            border-radius: 50%;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #000000;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #000000;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .nav-btn {
+            background-color: #000000;
+            color: #FFC8DD;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 2px solid #000000;
+        }
+
+        .nav-btn:hover {
+            background-color: transparent;
+            color: #000000;
+        }
+
+        .card {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 11rem 8% 6rem 8%;
+            min-height: 90vh;
+            gap: 4rem;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero-tagline {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            font-weight: 300;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: #000000;
+            color: #FFC8DD;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            border: 2px solid #000000;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(3, 4, 94, 0.15);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: #000000;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: transparent;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            border: 2px solid #000000;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(3, 4, 94, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .hero-image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image-placeholder {
+            width: 400px;
+            height: 450px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border: 2px solid #000000;
+            border-radius: 24px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 20px 20px 0px #000000;
+        }
+
+        /* Penyesuaian gambar agar pas di dalam bingkai Hero */
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 22px; 
+        }
+
+        .hero-image-placeholder span {
+            font-family: 'Tai Heritage Pro', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            text-align: center;
+            padding: 2rem;
+            opacity: 0.8;
+        }
+
+        /* Bagian Umum Global */
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto 4rem auto;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        /* Keunggulan Section (What We Offer Style) */
+        .features {
+            padding: 6rem 8%;
+            text-align: center;
+        }
+
+        .features .section-title {
+            margin-bottom: 3rem;
+            text-transform: normal;
+            letter-spacing: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background-color: transparent;
+            padding: 1.2rem;
+            border-radius: 16px;
+            border: 1px solid #000000;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        /* Koleksi Produk Section */
+        .products {
+            padding: 6rem 8%;
+            text-align: center;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            text-align: left;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(3, 4, 94, 0.08);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background-color: #000000;
+            color: #FFC8DD;
+            padding: 0.4rem 1rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            z-index: 1;
+        }
+
+        /* Pengaturan Gambar Produk */
+        .product-img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover; 
+            object-position: center;
+            border-bottom: 1px solid rgba(3, 4, 94, 0.05);
+            display: block;
+        }
+
+        .product-info {
+            padding: 2rem;
+        }
+
+        .product-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-desc {
+            font-size: 0.9rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+            min-height: 45px;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; 
+            gap: 1rem;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        /* Pengaturan Khusus Tombol WhatsApp & Shopee Berdampingan */
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            background-color: lab(85.45% -47.1 40.45);
+            color: #000000;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid #000000;
+            transition: all 0.3s ease;
+        }
+
+        .btn-sm:hover {
+            background-color: #fdfdfd;
+            color: #000000;
+        }
+
+        .btn-outline {
+            background-color: #f85128;
+            color: #FFC8DD;
+        }
+
+        .btn-outline:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        /* Testimoni Section */
+        .testimonials {
+            padding: 6rem 8%;
+            background-color: rgba(255, 255, 255, 0.15);
+            text-align: center;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            text-align: left;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+        }
+
+        .quote-icon {
+            font-size: 3rem;
+            font-family: 'Tai Heritage Pro', serif;
+            line-height: 1;
+            position: absolute;
+            top: 1rem;
+            left: 1.5rem;
+            opacity: 0.1;
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .testimonial-user {
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 6rem 8%;
+        }
+
+        h2.faq-title {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .faq-title .stylized-text {
+            font-family: 'Tai Heritage Pro', serif;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .faq-card {
+            background: linear-gradient(180deg, #ff9eb5 0%, rgba(255, 158, 181, 0) 100%);
+            padding: 2.5rem 2rem;
+            border-radius: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .faq-card h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            line-height: 1.4;
+        }
+
+        .faq-card p {
+            font-size: 0.95rem;
+            font-weight: 400;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        /* Footer Modern Super Minimalis */
+        footer {
+            background-color: #000000;
+            color: #FFC8DD;
+            padding: 4rem 8% 2rem 8%;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-icons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 48px;
+            height: 48px;
+            background-color: rgba(255, 200, 221, 0.1);
+            border: 1px solid rgba(255, 200, 221, 0.2);
+            border-radius: 50px;
+            color: #FFC8DD;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .social-icons a:hover {
+            background-color: #FFC8DD;
+            color: #000000;
+            transform: translateY(-4px);
+            box-shadow: 0 5px 15px rgba(255, 200, 221, 0.3);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 200, 221, 0.2);
+            font-size: 0.85rem;
+            font-weight: 300;
+            opacity: 0.7;
+        }
+
+        /* Responsivitas Layar */
+        @media (max-width: 968px) {
+            header {
+                padding: 1.5rem 5%;
+            }
+            nav ul {
+                display: none;
+            }
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 9rem;
+                gap: 3rem;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero-image-placeholder {
+                width: 100%;
+                max-width: 340px;
+                height: 380px;
+            }
+            h2.faq-title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Bagian Navigasi Atas -->
+    <header>
+        <div class="brand-logo" onclick="window.scrollTo(0,0)">
+            <img src="https://raw.githubusercontent.com/zaptzy/kasihsayangco/refs/heads/main/logo.png" alt="Logo Kasihsayang.co">
+            Kasihsayang.co
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#koleksi">Koleksi</a></li>
+                <li><a href="#keunggulan">Keunggulan</a></li>
+                <li><a href="#testimoni">Testimoni</a></li>
+                <li><a href="https://wa.me/6281376125400" class="nav-btn" target="_blank">Pesan Custom</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Bagian Utama (Hero Section) -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-tagline">100% Handcrafted Accessories</div>
+            <h1>Untaian Kasih Sayang di Setiap Detailnya</h1>
+            <p>Aksesoris Kasihsayang.co dirangkai secara manual dengan ketelitian tinggi. Menghasilkan karya seni personal yang indah, elegan, dan bermakna khusus untuk melengkapi gaya harian Anda.</p>
+            <div class="hero-buttons">
+                <a href="#koleksi" class="btn-primary">Lihat Koleksi</a>
+                <a href="#keunggulan" class="btn-secondary">Pelajari Detail</a>
+            </div>
+        </div>
+        <div class="hero-image-container">
+            <div class="hero-image-placeholder">
+                <img src="https://raw.githubusercontent.com/zaptzy/kasihsayangco/refs/heads/main/Header.jpg" alt="Gelang Estetik Kasihsayang.co" class="hero-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Bagian Nilai Utama / Keunggulan (Why Us) -->
+    <section class="features" id="keunggulan">
+        <h2 class="section-title">Mengapa Kasihsayang.co?</h2>
+        <p class="section-subtitle">Kami percaya bahwa aksesoris indah lahir dari tangan yang merangkai dengan penuh kasih dan sayang. Setiap aksesoris yang kamu pesan di sini tak hanya cantik, namun juga berisi cerita dan memori berarti bagi orang tersayangmu. </p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <img src="https://raw.githubusercontent.com/zaptzy/kasihsayangco/refs/heads/main/karyatangan.jpg" alt="100% Karya Tangan">
+                <h3>100% Karya Tangan</h3>
+                <p>Dibuat dengan tangan, bukan diproduksi massal oleh mesin. Setiap manik dipilih dengan cermat dan dirangkai dengan teliti untuk menciptakan karya yang terasa istimewa, tahan lama, dan penuh makna.</p>
+            </div>
+            <div class="feature-card">
+                <img src="https://raw.githubusercontent.com/zaptzy/kasihsayangco/refs/heads/main/nyaman.png" alt="Nyaman">
+                <h3>Nyaman</h3>
+                <p>Menggunakan manik pilihan yang berkualitas dan nyaman dipakai sehari-hari — effortless, timeless, and always you.</p>
+            </div>
+            <div class="feature-card">
+                <img src="https://raw.githubusercontent.com/zaptzy/kasihsayangco/refs/heads/main/DesainEksklusif.jpg" alt="Desain Eksklusif">
+                <h3>Desain Eksklusif</h3>
+                <p>Ceritakan keinginan kamu dan kami akan membantumu menciptakan aksesoris indah yang ekslusif dan personal untukmu.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bagian Etalase Produk / Koleksi Utama -->
+    <section class="products" id="koleksi">
+        <h2 class="section-title">Koleksi Terbatas Kami</h2>
+        <p class="section-subtitle">Temukan variasi rangkaian manik yang paling mencerminkan kepribadian anggun dan karakter unik Anda.</p>
+        <div class="product-grid">
+            
+            <!-- Produk 1: Terlaris -->
+            <div class="product-card">
+                <div class="product-badge">Terlaris</div>
+                <img src="https://raw.githubusercontent.com/zaptzy/kasihsayangco/refs/heads/main/GelangFairy.png" alt="Gelang Fairy" class="product-img">
+                <div class="product-info">
+                    <h3>Gelang Fairy</h3>
+                    <p class="product-desc">Kombinasi manik pasir dan glassbeads pastel yang manis untuk jadi teman outfit kamu.</p>
+                    <div class="product-footer">
+                        <span class="product-price">Rp 25.000</span>
+                        <div class="product-actions">
+                            <a href="https://wa.me/6281376125400?text=Halo,%20saya%20ingin%20pesan%20gelang%20Kasihsayang.co" class="btn-sm" target="_blank">WhatsApp</a>
+                            <a href="https://shopee.co.id/kasihsayang.co" class="btn-sm btn-outline" target="_blank">Shopee</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produk 2: Edisi Baru -->
+            <div class="product-card">
+                <div class="product-badge">Edisi Baru</div>
+                <img src="https://raw.githubusercontent.com/zaptzy/kasihsayangco/refs/heads/main/GantunganKunci.png" alt="Gantungan Kunci" class="product-img">
+                <div class="product-info">
+                    <h3>Gantungan Kunci</h3>
+                    <p class="product-desc">Gantungan kunci yang bisa dicustom sesuai dengan keinginanmu. Kamu bisa request charm dan inisial nama kamu loh!</p>
+                    <div class="product-footer">
+                        <span class="product-price">Rp 25.000</span>
+                        <div class="product-actions">
+                            <a href="https://wa.me/6281376125400?text=Halo,%20saya%20ingin%20pesan%20gelang%20Kasihsayang.co" class="btn-sm" target="_blank">WhatsApp</a>
+                            <a href="https://shopee.co.id/kasihsayang.co" class="btn-sm btn-outline" target="_blank">Shopee</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produk 3: Favorit -->
+            <div class="product-card">
+                <div class="product-badge">Favorit</div>
+                <img src="https://raw.githubusercontent.com/zaptzy/kasihsayangco/refs/heads/main/Bookmark.png" alt="Bookmark" class="product-img">
+                <div class="product-info">
+                    <h3>Bookmark</h3>
+                    <p class="product-desc">Pembatas buku manik-manik yang spesial dan bisa kamu request sesuai dengan cover buku favoritmu!</p>
+                    <div class="product-footer">
+                        <span class="product-price">Rp 30.000</span>
+                        <div class="product-actions">
+                            <a href="https://wa.me/6281376125400?text=Halo,%20saya%20ingin%20pesan%20gelang%20Kasihsayang.co" class="btn-sm" target="_blank">WhatsApp</a>
+                            <a href="https://shopee.co.id/kasihsayang.co" class="btn-sm btn-outline" target="_blank">Shopee</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Bagian Ulasan Pelanggan (Testimoni) -->
+    <section class="testimonials" id="testimoni">
+        <h2 class="section-title">Suara Mereka</h2>
+        <p class="section-subtitle">Beberapa suara hati kesayangan kami yang telah memesan buah tangan untuk kesayangan mereka.</p>
+        <div class="testimonial-grid">
+            <a href="https://www.instagram.com/p/DRl6TJSEsVx?comment_id=17867428131498742" class="card">
+            <div class="testimonial-card">
+                <div class="quote-icon">“</div>
+                <p class="testimonial-text">"It looks beautiful as in the photos!"</p>
+                <div class="testimonial-user">— Mufalgi.</div>
+            </div></a>
+            <a href="https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MDI3NzQ2NDA1MDU2NjEx?story_media_id=3904545133807443134_29845646092&igsh=MTA2MTBsaG10MDAzMA==" class="card">
+            <div class="testimonial-card">
+                <div class="quote-icon">“</div>
+                <p class="testimonial-text">"Aku pake terus gelangnya, soalnya lucu-lucu!!"</p>
+                <div class="testimonial-user">— Nicole.</div>
+            </div></a>
+            <a href="https://www.instagram.com/reel/DYtVD2kAtfH/?igsh=MWNxYmQ1am54YzA5Zw==" class="card">
+            <div class="testimonial-card">
+                <div class="quote-icon">“</div>
+                <p class="testimonial-text">"Suka banget kak gelangnya, lucuk! 😍"</p>
+                <div class="testimonial-user">— Amasmall.</div>
+            </div></a>
+        </div>
+    </section>
+
+    <!-- Bagian Frequently Asked Questions (FAQ) -->
+    <section class="faq" id="faq">
+        <h2 class="faq-title">Frequently asked <span class="stylized-text">questions</span></h2>
+        <div class="faq-grid">
+            <div class="faq-card">
+                <h3>Bisakah saya memesan aksesoris custom?</h3>
+                <p>Tentu saja! Hubungi kami melalui WhatsApp untuk mendiskusikan desain, warna, maupun penambahan nama pada gelang pesanan Anda.</p>
+            </div>
+            <div class="faq-card">
+                <h3>Apakah ada pengiriman di hari yang sama?</h3>
+                <p>Ya! Lakukan pemesanan sebelum jam 1 siang untuk memastikan pesanan Anda dikirimkan dan diproses pada hari yang sama.</p>
+            </div>
+            <div class="faq-card">
+                <h3>Apakah melayani pengiriman ke luar kota?</h3>
+                <p>Tentu, kami bekerja sama dengan kurir terpercaya untuk mengirimkan pesanan Anda dengan aman ke seluruh wilayah Indonesia.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bagian Footer (Khusus Ikon Sosial Media Saja) -->
+    <footer>
+        <div class="footer-content">
+            <div style="text-align: center;">
+                <p style="font-size: 1.1rem; margin-bottom: 1rem; font-weight: 400;">Mari menjalin kasih dengan kami di sini</p>
+                <div class="social-icons">
+                    <!-- WhatsApp -->
+                    <a href="https://wa.me/6281376125400" target="_blank" aria-label="WhatsApp Kasihsayang.co">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                    </a>
+
+                    <!-- Instagram -->
+                    <a href="https://instagram.com/kasihsayang.co.id" target="_blank" aria-label="Instagram Kasihsayang.co">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </a>
+
+                    <!-- TikTok -->
+                    <a href="https://www.tiktok.com/@kasihsayang.co" target="_blank" aria-label="TikTok Kasihsayang.co">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+                    </a>
+
+                    <!-- Shopee -->
+                    <a href="https://shopee.co.id/kasihsayang.co" target="_blank" aria-label="Shopee Kasihsayang.co">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    </a>
+
+                    <!-- Email -->
+                    <a href="mailto:kasihsayang.co@gmail.com" target="_blank" aria-label="Email Kasihsayang.co">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Kasihsayang.co. Dirangkai dengan 100% cinta dan dedikasi.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
